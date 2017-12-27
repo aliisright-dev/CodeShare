@@ -64,6 +64,7 @@
                     <img class="img-thumbnail" src="{{$post->postimage->path}}">
                   </div>
                   @endif
+
                   <div class="panel-body">
                     <p>{{substr($post->body, 0, 250)}}  ...</p>
                   </div>

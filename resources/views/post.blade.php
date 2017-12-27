@@ -74,7 +74,6 @@
               <!--Commentaires-->
 
               <!--Ajout d'un commentaire-->
-              <hr>
               <h3>COMMENTAIRES</h3>
               <form class="text-center" method="POST" action="{{route('add.comment')}}">
                 <div class="form-group form-horizontal">
@@ -86,7 +85,6 @@
                 <input type="hidden" name="postId" value="{{$post->id}}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
               </form>
-
               <!--Afficher les commentaires-->
               @foreach($post->comment->sortByDesc('created_at') as $comment)
               <div class="comment-box">
