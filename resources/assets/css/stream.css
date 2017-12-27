@@ -11,3 +11,7 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+.stream-post-box {
+  margin: 10px;
+}

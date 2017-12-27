@@ -9,6 +9,7 @@ use App\Http\Controllers\LikeController;
 
 use App\Post;
 use App\Like;
+use App\Comment;
 
 class PostController extends Controller
 {
@@ -28,21 +29,22 @@ class PostController extends Controller
       $title = $request->input('title');
       $body = $request->input('body');
 
-      $newPost = new Post();
+      if(Auth::check()){
+          $newPost = new Post();
 
-      if($title) {
-        $newPost->title = $title;
+          if($title) {
+            $newPost->title = $title;
+          }
+
+          if($body) {
+            $newPost->body = $body;
+          }
+
+          if($title OR $body) {
+            $newPost->user_id = Auth::user()->id;
+            $newPost->save();
+          }
       }
-
-      if($body) {
-        $newPost->body = $body;
-      }
-
-      if($title OR $body) {
-        $newPost->user_id = Auth::user()->id;
-        $newPost->save();
-      }
-
       return redirect()->back();
     }
 
@@ -53,23 +55,23 @@ class PostController extends Controller
       $body = $request->input('body');
       $postId = $request->input('postId');
 
+      if(Auth::check()){
+          if($postId) {
+            $newPost = Post::where('id', $postId)->first();
 
-      if($postId) {
-        $newPost = Post::where('id', $postId)->first();
-
-        if($newPost->user_id == Auth::user()->id) {
-          if($title) {
-            $newPost->title = $title;
+            if($newPost->user_id == Auth::user()->id) {
+              if($title) {
+                $newPost->title = $title;
+              }
+              if($body) {
+                $newPost->body = $body;
+              }
+              if($title OR $body) {
+                $newPost->save();
+              }
+            }
           }
-          if($body) {
-            $newPost->body = $body;
-          }
-          if($title OR $body) {
-            $newPost->save();
-          }
-        }
       }
-
       return redirect()->back();
     }
 
@@ -78,14 +80,20 @@ class PostController extends Controller
 
       $postId = $request->input('postId');
 
-      if($postId) {
-        $deletePost = Post::where('id', $postId)->first();
+      if(Auth::check()){
+          if($postId) {
+            $deletePost = Post::where('id', $postId)->first();
+            $deletePostComments = Comment::where('post_id', $postId);
+            $deletePostLikes = Like::where('post_id', $postId);
 
-        if($deletePost->user_id == Auth::user()->id) {
-          $deletePost->delete();
-        }
+            if($deletePost->user_id == Auth::user()->id) {
+              $deletePost->delete();
+              $deletePostComments->delete();
+              $deletePostLikes->delete();
+            }
+          }
       }
 
-      return redirect()->back();
+      return redirect('/stream');
     }
 }

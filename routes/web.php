@@ -46,6 +46,19 @@ Route::post('/deletepost', [
   'middleware' => 'auth'
 ]);
 
+//Comments
+Route::post('/addcomment', [
+  'uses' => 'CommentController@addComment',
+  'as' => 'add.comment',
+  'middleware' => 'auth'
+]);
+
+Route::post('/deletecomment', [
+  'uses' => 'CommentController@deleteComment',
+  'as' => 'delete.comment',
+  'middleware' => 'auth'
+]);
+
 //Likes
 Route::get('/like/{postId}', [
   'uses' => 'LikeController@addLike',

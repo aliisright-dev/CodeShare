@@ -7,7 +7,7 @@
       <div class="col-md-9 content">
         <div class="panel panel-default">
           <!--Formulaire de publication-->
-          <h3 class="panel-heading">Dis-nous!</h3>
+          <h3 class="panel-heading">Des idées?</h3>
           <form class="formulaire-publication panel-body" method="POST" action="{{route('add.post')}}">
             <div class="form-group">
                 <input class="form-control" type="text" name="title" placeholder="Le titre de votre publication">
@@ -29,20 +29,22 @@
         @else
 
         <!--Les publications-->
-        <div class="panel panel-default panel-heading">
-          @foreach($posts as $post)
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h3>{{$post->title}}</h3>
-                <p class="author-date-publication"><i>publié le {{$post->created_at->format('d/m/Y')}} par <a href="#">{{$post->user->nickname}}</a></i></p>
-              </div>
-              <div class="panel-body">
-                <p>{{substr($post->body, 0, 250)}}  ...</p>
-              </div>
-              <div class="text-center">
-                <p>{{count($post->like)}} likes</p>
-                <a href="{{route('show.post', ['userNickname' => $post->user->nickname, 'postId' => $post->id])}}"><button class="btn btn-primary">Consultez la publication</button></a>
-                <hr>
+        <div>
+          @foreach($posts->sortByDesc('created_at') as $post)
+            <div class="col-md-6">
+              <div class="panel panel-default stream-post-box">
+                  <div class="panel-heading">
+                    <h3>{{$post->title}}</h3>
+                    <p class="author-date-publication"><i>publié le {{$post->created_at->format('d/m/Y')}} par <a href="#">{{$post->user->nickname}}</a></i></p>
+                  </div>
+                  <div class="panel-body">
+                    <p>{{substr($post->body, 0, 250)}}  ...</p>
+                  </div>
+                  <div class="text-center">
+                    <p>{{count($post->like)}} <img src="/resources/assets/img/icons/green-heart.png" width="10px">  |  {{count($post->comment)}} commentaires</p>
+                    <a href="{{route('show.post', ['userNickname' => $post->user->nickname, 'postId' => $post->id])}}"><button class="btn btn-primary">Consulter la publication</button></a>
+                    <hr>
+                  </div>
               </div>
             </div>
           @endforeach

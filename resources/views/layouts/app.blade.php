@@ -76,7 +76,7 @@
                 </header>
 
                 <!--Footer (copyright)-->
-                <footer><p>&copy CodeShare 2017</p></footer>
+                <footer><p>&copy Ali Hasan 2017</p></footer>
 
             </div>
 
