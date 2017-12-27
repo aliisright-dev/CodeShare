@@ -12,67 +12,81 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!--Mes Feuilles de style-->
+    <!--layout.css--><link rel="stylesheet" type="text/css" href="/resources/assets/css/layout.css">
+    <!--stream.css--><link rel="stylesheet" type="text/css" href="/resources/assets/css/stream.css">
+    <!--post.css--><link rel="stylesheet" type="text/css" href="/resources/assets/css/post.css">
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+    <section class="container-fluid">
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
+        <div class="row">
+            <div class="navigation col-md-3">
+                <header>
+                    <!--Logo-->
+                    <div class="logo">
+                        <h1>CodeShare</h1>
+                    </div>
+                    <!--Menu de navigation-->
+                    <div class="menu">
+                        @auth
+                        <h4 class="nickname-greating">Yello {{Auth::user()->nickname}} !</h4>
+                        @endauth
+                        <hr>
+                        <ul class="list-unstyled">
+                            @guest
+                                <li><a href="{{ route('login') }}">Login</a></li>
+                                <li><a href="{{ route('register') }}">Register</a></li>
+                            @else
+                                <li>
+                                    <a href="{{ route('stream') }}">Le Stream</a>
+                                </li>
+                                <li>
+                                    <a href="#">Membres de CodeShare</a>
+                                </li>
+                                <li>
+                                    <a href="#">Abonnements</a>
+                                </li>
+                                <li>
+                                    <a href="#">Abonnés</a>
+                                </li>
+                                <hr>
+                                <li>
+                                    <a href="#">Mon profil</a>
+                                </li>
+                                <li>
+                                    <a href="#">Réglages/Mon compte</a>
+                                </li>
+                                <hr>
+                                <li>
+                                    <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            @endguest
+                        </ul>
+                    </div>
+                </header>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+                <!--Footer (copyright)-->
+                <footer><p>&copy CodeShare 2017</p></footer>
 
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
             </div>
-        </nav>
 
-        @yield('content')
-    </div>
+            <div class="col-md-9">
+                @yield('content')
+            </div>
+        </div>
+
+    </section>
+
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

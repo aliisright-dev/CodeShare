@@ -1,0 +1,13 @@
+.author-date-publication {
+  font-size: 12px;
+  color: grey;
+}
+
+.social-side-bar {
+  height: 100vh;
+  background-color: lightgreen;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
