@@ -15,13 +15,15 @@ class LikeController extends Controller
 
       $likeExist = Like::where('user_id', Auth::user()->id)->where('post_id', $postId)->get();
 
-      if(count($likeExist) == 0 ) {
-        $newLike = new Like();
+      if(Auth::check()){
+          if(count($likeExist) == 0 ) {
+            $newLike = new Like();
 
-        $newLike->user_id = Auth::user()->id;
-        $newLike->post_id = $postId;
+            $newLike->user_id = Auth::user()->id;
+            $newLike->post_id = $postId;
 
-        $newLike->save();
+            $newLike->save();
+          }
       }
 
       return redirect()->back();
@@ -32,8 +34,10 @@ class LikeController extends Controller
 
       $likeExist = Like::where('user_id', Auth::user()->id)->where('post_id', $postId);
 
-      if(count($likeExist) > 0) {
-        $likeExist->delete();
+      if(Auth::check()){
+          if(count($likeExist) > 0) {
+            $likeExist->delete();
+          }
       }
       return redirect()->back();
     }
