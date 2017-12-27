@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 use App\Http\Controllers\LikeController;
 
 use App\Post;
 use App\Like;
 use App\Comment;
+use App\Postimage;
 
 class PostController extends Controller
 {
@@ -28,6 +32,8 @@ class PostController extends Controller
 
       $title = $request->input('title');
       $body = $request->input('body');
+      $code = $request->input('code');
+      $file = Input::file('image');
 
       if(Auth::check()){
           $newPost = new Post();
@@ -40,7 +46,33 @@ class PostController extends Controller
             $newPost->body = $body;
           }
 
-          if($title OR $body) {
+          if($code) {
+            $newPost->code = $code;
+          }
+
+          if($file) {
+                $extension = $file->getClientOriginalExtension();
+
+                Storage::disk('public')->put(
+                  Auth::user()->email.'_'.$file->getFilename().'.'.$extension,
+                  File::get($file)
+                );
+
+                //Ajout dee la photo dans la table Postimages
+                $newPostImage = new Postimage();
+
+                $newPostImage->mime = $file->getClientMimeType();
+                $newPostImage->name = Auth::user()->email.'_'.$file->getFilename().'.'.$extension;
+                $newPostImage->path = "/storage/app/public/".$newPostImage->name;
+                $newPostImage->user_id = Auth::user()->id;
+
+                $newPostImage->save();
+
+                //Assigner le id de la photo (dans Postimage) à la publication (dans Post)
+                $newPost->postimage_id = $newPostImage->id;
+          }
+
+          if($title OR $body OR $file) {
             $newPost->user_id = Auth::user()->id;
             $newPost->save();
           }

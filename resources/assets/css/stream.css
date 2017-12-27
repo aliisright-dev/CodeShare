@@ -1,17 +1,45 @@
-.author-date-publication {
-  font-size: 12px;
-  color: grey;
+.add-post-button {
+  margin: 20px 0;
 }
 
-.social-side-bar {
-  height: 100vh;
-  background-color: lightgreen;
+.add-post-button button{
+  background-color: #336655;
+  box-shadow: 0px 0px 4px #336655;
+  color: white;
+}
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.add-post-button button:hover{
+  background-color: #111312;
+  color: white;
+}
+
+.wrapped {
+  columns : 200px 3;
+  column-gap: 15px;
+  max-width: 1100px;
+}
+
+.wrapped div{
+  display: inline-block;
+  break-inside: avoid;
 }
 
 .stream-post-box {
   margin: 10px;
+  box-shadow: 0px 0px 7px #336655;
+  text-align: center;
+  background-color: #111312;
+  color: white;
+  border-width: 0;
+}
+
+.img-thumbnail {
+  padding: 0;
+  border-width: 0;
+  border-radius: 0;
+}
+
+.author-date-publication {
+  font-size: 12px;
+  color: grey;
 }

@@ -1,13 +1,18 @@
 body {
-  background-color: white;
+  background-color: #66CDAA;
   max-height: 100vh;
   max-width: 100vw;
+}
+
+.content-container {
+  padding: 0;
 }
 
 .navigation {
   width: 250px;
   height: 100vh;
-  background-color: black;
+  background-color: #336655;
+  margin: 0;
 
   display: flex;
   flex-direction: column;
@@ -29,6 +34,15 @@ body {
 
 footer {
   text-align: center;
+}
+
+.social-side-bar {
+  height: 100vh;
+  background-color: #336655;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .content {
