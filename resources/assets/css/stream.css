@@ -30,7 +30,8 @@
   text-align: center;
   background-color: #111312;
   color: white;
-  border-width: 0;
+  border: 3px solid rgb(216,216,216);
+  border-radius: 20px;
 }
 
 .img-thumbnail {
