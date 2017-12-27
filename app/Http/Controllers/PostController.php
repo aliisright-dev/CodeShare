@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Controllers\LikeController;
+
 use App\Post;
+use App\Like;
 
 class PostController extends Controller
 {
@@ -14,7 +17,9 @@ class PostController extends Controller
 
       $post = Post::where('id', $postId)->first();
 
-      return view('post', ['post' => $post]);
+      $likeExist = Like::where('user_id', Auth::user()->id)->where('post_id', $postId)->get();
+
+      return view('post', ['post' => $post, 'likeExist' => $likeExist]);
     }
 
     //Ajout d'une nouvelle publication

@@ -21,10 +21,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/stream', 'StreamController@index')->name('stream');
 
 
-//Posts
+//Publications
 Route::get('/posts/{userNickname}/{postId}', [
   'uses' => 'PostController@index',
-  'as' => 'show.postpage',
+  'as' => 'show.post',
   'middleware' => 'auth'
 ]);
 
@@ -43,5 +43,18 @@ Route::post('/editpost', [
 Route::post('/deletepost', [
   'uses' => 'PostController@deletePost',
   'as' => 'delete.post',
+  'middleware' => 'auth'
+]);
+
+//Likes
+Route::get('/like/{postId}', [
+  'uses' => 'LikeController@addLike',
+  'as' => 'add.like',
+  'middleware' => 'auth'
+]);
+
+Route::get('/unlike/{postId}', [
+  'uses' => 'LikeController@removeLike',
+  'as' => 'remove.like',
   'middleware' => 'auth'
 ]);

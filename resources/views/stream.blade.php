@@ -40,7 +40,8 @@
                 <p>{{substr($post->body, 0, 250)}}  ...</p>
               </div>
               <div class="text-center">
-                <a href="{{route('show.postpage', ['userNickname' => $post->user->nickname, 'postId' => $post->id])}}"><button class="btn btn-primary">Consultez la publication</button></a>
+                <p>{{count($post->like)}} likes</p>
+                <a href="{{route('show.post', ['userNickname' => $post->user->nickname, 'postId' => $post->id])}}"><button class="btn btn-primary">Consultez la publication</button></a>
                 <hr>
               </div>
             </div>

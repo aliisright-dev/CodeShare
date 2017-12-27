@@ -13,6 +13,12 @@
               <div>
                 <p>{{$post->body}}</p>
               </div>
+
+              @if(count($likeExist) == 0)
+              <p>{{count($post->like)}} likes  |  <a href="{{ route('add.like', ['postId' => $post->id]) }}">❤️</a></p>
+              @else
+              <p>{{count($post->like)}} likes  |  <a href="{{ route('remove.like', ['postId' => $post->id]) }}">🖤</a></p>
+              @endif
             </div>
             <hr>
 
