@@ -18,8 +18,27 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/stream/{showAll}', 'StreamController@showAll')->name('streamAll');
 Route::get('/stream', 'StreamController@index')->name('stream');
 
+//Profiles and Follows
+Route::get('/user/{userId}', [
+  'uses' => 'ProfileController@index',
+  'as' => 'show.profile',
+  'middleware' => 'auth'
+]);
+
+Route::get('/follow/{followedId}', [
+  'uses' => 'FollowController@follow',
+  'as' => 'follow.user',
+  'middleware' => 'auth'
+]);
+
+Route::get('/unfollow/{followedId}', [
+  'uses' => 'FollowController@unfollow',
+  'as' => 'unfollow.user',
+  'middleware' => 'auth'
+]);
 
 //Publications
 Route::get('/posts/{userNickname}/{postId}', [

@@ -1,0 +1,54 @@
+.member-card {
+  margin: auto;
+  padding: 20px;
+  background-color: #19332A;
+  width: 700px;
+  max-width: 1100px;
+  margin-top: 30px;
+  color: white;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-user-photo {
+  background-image: url(https://www.trickscity.com/wp-content/uploads/2017/09/cute-profile-pics-for-whatsapp-images.png);
+  background-size: cover;
+  background-position: center;
+  border-radius: 100%;
+  border: 3px solid white;
+  height: 100px;
+  width: 100px;
+}
+
+.profile-post-div {
+  padding: 20px;
+  background-color: #111312;
+  color: white;
+  border-radius: 15px;
+  margin: 10px
+}
+
+.user-tools {
+  text-align: center;
+  padding: 20px;
+  max-width: 400px;
+  color: white;
+  border-radius: 15px;
+  margin: 10px;
+  margin-top: 40px;
+}
+
+.profile-photo-nickname {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.followers-button {
+  height: 100px;
+  width: 100px;
+  background-color: red;
+}

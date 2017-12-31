@@ -14,7 +14,7 @@
 }
 
 .wrapped {
-  columns : 200px 3;
+  column-width : 250px;
   column-gap: 15px;
   max-width: 1100px;
 }
@@ -28,10 +28,18 @@
   margin: 10px;
   box-shadow: 0px 0px 7px #336655;
   text-align: center;
-  background-color: #111312;
+  background-color: #19332A;
   color: white;
   border: 3px solid rgb(216,216,216);
   border-radius: 20px;
+}
+
+.div-add-card {
+  opacity: 0.5;
+}
+
+.div-add-card:hover{
+  opacity: 1;
 }
 
 .img-thumbnail {

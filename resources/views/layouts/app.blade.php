@@ -16,6 +16,7 @@
     <!--layout.css--><link rel="stylesheet" type="text/css" href="/resources/assets/css/layout.css">
     <!--stream.css--><link rel="stylesheet" type="text/css" href="/resources/assets/css/stream.css">
     <!--post.css--><link rel="stylesheet" type="text/css" href="/resources/assets/css/post.css">
+    <!--profile.css--><link rel="stylesheet" type="text/css" href="/resources/assets/css/profile.css">
 </head>
 <body>
 
@@ -29,7 +30,13 @@
                         <h1>CodeShare</h1>
                     </div>
                     <!--Menu de navigation-->
-                    <div class="menu">
+
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
+                        <span class="toggle"></span>
+                        <img src="/resources/assets/img/icons/green-burger-menu.png" width="40px">
+                    </button>
+
+                    <div class="menu collapse navbar-collapse" id="app-navbar-collapse">
                         @auth
                         <h4 class="nickname-greating">Yello {{Auth::user()->nickname}} !</h4>
                         @endauth
@@ -40,23 +47,23 @@
                                 <li><a href="{{ route('register') }}">Register</a></li>
                             @else
                                 <li>
-                                    <a href="{{ route('stream') }}">Le Stream</a>
+                                    <a href="{{ route('stream') }}"><img src="/resources/assets/img/icons/stream-icon.png" width="20px"> Le Stream</a>
                                 </li>
                                 <li>
-                                    <a href="#">Membres de CodeShare</a>
+                                    <a class="align-baseline" href="#"><img src="/resources/assets/img/icons/members-icon.png" width="20px"> Membres de CodeShare</a>
                                 </li>
                                 <li>
-                                    <a href="#">Abonnements</a>
+                                    <a href="#"><img src="/resources/assets/img/icons/following-icon.png" width="20px"> Mes abonnements</a>
                                 </li>
                                 <li>
-                                    <a href="#">Abonnés</a>
+                                    <a href="#"><img src="/resources/assets/img/icons/followers-icon.png" width="20px"> Mes abonnés</a>
                                 </li>
                                 <hr>
                                 <li>
-                                    <a href="#">Mon profil</a>
+                                    <a href="{{route('show.profile', ['userId' => Auth::user()->id])}}"><img src="/resources/assets/img/icons/profile-icon.png" width="20px"> Mon profil</a>
                                 </li>
                                 <li>
-                                    <a href="#">Réglages/Mon compte</a>
+                                    <a href="#"><img src="/resources/assets/img/icons/settings-icon.png" width="20px"> Réglages/Mon compte</a>
                                 </li>
                                 <hr>
                                 <li>
@@ -80,7 +87,7 @@
 
             </div>
 
-            <div class="content-container col-md-9">
+            <div class="col-md-9">
                 @yield('content')
             </div>
         </div>

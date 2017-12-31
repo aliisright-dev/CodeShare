@@ -40,6 +40,7 @@ footer {
 .social-side-bar {
   height: 100vh;
   background-color: #336655;
+  color: white;
 
   display: flex;
   flex-direction: column;
@@ -49,4 +50,45 @@ footer {
 .content {
   height: 100vh;
   overflow-y: scroll;
+}
+
+.navbar-toggle {
+  z-index: 1;
+}
+
+.toggle {
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .navigation {
+    width: auto;
+    height: auto;
+  }
+
+  .logo {
+    text-align: center;
+  }
+
+  .content {
+    text-align: center;
+  }
+
+  .toggle {
+    display: inline;
+  }
+
+  .menu {
+    display: none;
+  }
+
+  footer {
+    opacity: 0.5;
+    font-size: 9px;
+    text-align: left;
+  }
+}
+
+.message-posts-exist {
+  color: white;
 }
